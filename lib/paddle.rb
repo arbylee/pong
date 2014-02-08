@@ -53,6 +53,8 @@ class Paddle < Quad
   end
 
   def ai_move! ball
+    return if (ball.y - y).abs < 4
+
     if ball.y > y
       down!
     elsif ball.y < y
