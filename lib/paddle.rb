@@ -3,6 +3,7 @@ require_relative './quad'
 class Paddle < Quad
   WIDTH = 16
   HEIGHT = 96
+  SPEED = 6
   attr_reader :side, :y
 
   def initialize side
@@ -12,10 +13,10 @@ class Paddle < Quad
 
   def x1
     case @side
-      when :left
-        0
-      when :right
-        Pong::WIDTH - WIDTH
+    when :left
+      0
+    when :right
+      Pong::WIDTH - WIDTH
     end
   end
 
@@ -32,7 +33,7 @@ class Paddle < Quad
   end
 
   def up!
-    @y -= 4
+    @y -= SPEED
 
     if y1 < 0
       @y = HEIGHT / 2
@@ -40,7 +41,7 @@ class Paddle < Quad
   end
 
   def down!
-    @y += 4
+    @y += SPEED
     @y = Pong::HEIGHT if @y > Pong::HEIGHT
 
     if y2 > Pong::HEIGHT

@@ -26,6 +26,14 @@ class Pong < Gosu::Window
       @ball = Ball.new
     end
 
+    if @ball.intersect?(@left_paddle)
+      @ball.bounce_off_paddle!(@left_paddle)
+    end
+
+    if @ball.intersect?(@right_paddle)
+      @ball.bounce_off_paddle!(@right_paddle)
+    end
+
     if button_down?(Gosu::KbW)
       @left_paddle.up!
     end

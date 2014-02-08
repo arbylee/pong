@@ -9,7 +9,7 @@ class Ball < Quad
     @y = Pong::HEIGHT / 2
     @angle = rand(120) + 30
     @angle *= -1 if rand > 0.5
-    @speed = 4
+    @speed = 3
   end
 
   def x1; @x - SIZE / 2; end
@@ -29,6 +29,21 @@ class Ball < Quad
     @angle = Gosu.angle(0, 0, dx, -dy)
   end
 
+  def bounce_off_paddle! paddle
+    case paddle.side
+    when :left
+      @x = paddle.x2 + SIZE/2
+      @angle = Gosu.angle(0, 0, -dx, dy)
+    when :right
+      @x = paddle.x1 - SIZE/2
+      @angle = Gosu.angle(0, 0, -dx, dy)
+    end
+
+    ratio = (y - paddle.y) / Paddle::HEIGHT
+    @angle = ratio * 120 + 90
+    @angle *= -1 if paddle.side == :right
+  end
+
   def move!
     @x += dx
     @y += dy
@@ -42,6 +57,13 @@ class Ball < Quad
       @y = Pong::HEIGHT
       bounce_off_edge!
     end
+  end
+
+  def intersect? paddle
+    x1 < paddle.x2 &&
+      x2 > paddle.x1 &&
+      y1 < paddle.y2 &&
+      y2 > paddle.y1
   end
 
   def off_left?
