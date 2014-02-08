@@ -33,6 +33,14 @@ class Pong < Gosu::Window
     if button_down?(Gosu::KbS)
       @left_paddle.down!
     end
+
+    if button_down?(Gosu::KbUp)
+      @right_paddle.up!
+    end
+
+    if button_down?(Gosu::KbDown)
+      @right_paddle.down!
+    end
   end
 
   def draw
