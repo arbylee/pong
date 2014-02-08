@@ -34,12 +34,16 @@ class Pong < Gosu::Window
       @ball.bounce_off_paddle!(@right_paddle)
     end
 
-    if button_down?(Gosu::KbW)
-      @left_paddle.up!
-    end
+    if @left_paddle.ai?
+      @left_paddle.ai_move!(@ball)
+    else
+      if button_down?(Gosu::KbW)
+        @left_paddle.up!
+      end
 
-    if button_down?(Gosu::KbS)
-      @left_paddle.down!
+      if button_down?(Gosu::KbS)
+        @left_paddle.down!
+      end
     end
 
     if button_down?(Gosu::KbUp)

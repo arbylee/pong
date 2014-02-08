@@ -4,9 +4,12 @@ class Paddle < Quad
   WIDTH = 16
   HEIGHT = 96
   SPEED = 6
-  attr_reader :side, :y
+  attr_reader :side, :y, :ai
 
-  def initialize side
+  alias ai? ai
+
+  def initialize side, ai=false
+    @ai = ai
     @side = side
     @y = Pong::HEIGHT / 2
   end
@@ -46,6 +49,14 @@ class Paddle < Quad
 
     if y2 > Pong::HEIGHT
       @y = Pong::HEIGHT - HEIGHT/2
+    end
+  end
+
+  def ai_move! ball
+    if ball.y > y
+      down!
+    elsif ball.y < y
+      up!
     end
   end
 end
