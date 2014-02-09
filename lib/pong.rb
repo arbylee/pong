@@ -2,14 +2,14 @@ class Pong < Gosu::Window
   WIDTH = 768
   HEIGHT = 576
 
-  def initialize
+  def initialize ai=false
     super WIDTH, HEIGHT, false
     self.caption = "Pong"
     @left_score = 0
     @right_score = 0
     @font = Gosu::Font.new(self, Gosu::default_font_name, 30)
 
-    @left_paddle = Paddle.new(:left)
+    @left_paddle = Paddle.new(:left, ai)
     @right_paddle = Paddle.new(:right)
     @ball = Ball.new
   end
@@ -69,6 +69,3 @@ class Pong < Gosu::Window
     end
   end
 end
-
-window = Pong.new
-window.show

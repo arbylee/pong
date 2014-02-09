@@ -1,3 +1,22 @@
 #!/usr/env ruby
 
+require 'optparse'
+options = {}
+options[:ai] = false
+
+opt_parser = OptionParser.new do |opt|
+  opt.banner = "Usage: pong [OPTIONS]"
+  opt.separator  ""
+  opt.separator  "Options"
+
+  opt.on("-a","--ai","Flag to start the left player as AI") do
+    options[:ai] = true
+  end
+end
+
+opt_parser.parse!
+
 require_relative '../config/environment'
+
+window = Pong.new(options[:ai])
+window.show
