@@ -12,6 +12,7 @@ class Pong < Gosu::Window
     @left_paddle = Paddle.new(:left, ai)
     @right_paddle = Paddle.new(:right)
     @ball = Ball.new
+    self.show
   end
 
   def update

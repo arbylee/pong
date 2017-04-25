@@ -1,4 +1,4 @@
-#!/usr/env ruby
+#!/usr/bin/env ruby
 
 require 'optparse'
 options = {}
@@ -19,4 +19,3 @@ opt_parser.parse!
 require_relative '../config/environment'
 
 window = Pong.new(options[:ai])
-window.show
