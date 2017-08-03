@@ -3,6 +3,7 @@
 require 'optparse'
 options = {}
 options[:ai] = false
+options[:balls] = 1
 
 opt_parser = OptionParser.new do |opt|
   opt.banner = "Usage: pong [OPTIONS]"
@@ -12,10 +13,13 @@ opt_parser = OptionParser.new do |opt|
   opt.on("-a","--ai","Flag to start the left player as AI") do
     options[:ai] = true
   end
+  opt.on("-b","--balls=ball_count","Flag to start the left player as AI", Integer) do |ball_count|
+    options[:balls] = ball_count
+  end
 end
 
 opt_parser.parse!
 
 require_relative '../config/environment'
 
-window = Pong.new(options[:ai])
+window = Pong.new(options)

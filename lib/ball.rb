@@ -5,6 +5,10 @@ class Ball < Quad
 
   attr_reader :x, :y, :angle, :speed
   def initialize
+    reset
+  end
+
+  def reset
     @x = Pong::WIDTH / 2
     @y = Pong::HEIGHT / 2
     @angle = rand(120) + 30
