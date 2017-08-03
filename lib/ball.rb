@@ -9,7 +9,7 @@ class Ball < Quad
     @y = Pong::HEIGHT / 2
     @angle = rand(120) + 30
     @angle *= -1 if rand > 0.5
-    @speed = 3
+    @speed = 6
   end
 
   def x1; @x - SIZE / 2; end
